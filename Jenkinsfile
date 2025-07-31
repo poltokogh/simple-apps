@@ -1,10 +1,10 @@
 pipeline {
-    agent { label 'devops1-nama' }
+    agent { label 'dev-fajar' }
 
     stages {
         stage('Pull SCM') {
             steps {
-                git branch: 'main', url: 'https://github.com/username/simple-apps.git'
+                git branch: 'main', url: 'https://github.com/poltokogh/simple-apps.git'
             }
         }
         
@@ -13,6 +13,7 @@ pipeline {
                 sh'''
                 cd app
                 npm install
+                npm audit fix --force
                 '''
             }
         }
@@ -32,10 +33,10 @@ pipeline {
                 sh'''
                 cd app
                 sonar-scanner \
-                    -Dsonar.projectKey=Simple-Apps \
+                    -Dsonar.projectKey=simple-app-jen \
                     -Dsonar.sources=. \
-                    -Dsonar.host.url=http://172.23.x.x:9000 \
-                    -Dsonar.login=token-sonar
+                    -Dsonar.host.url=http://172.23.8.131:9000 \
+                    -Dsonar.login=sqp_80a3dceb2fc0aa917df90e6e8a379da628003c29
                 '''
             }
         }
