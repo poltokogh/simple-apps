@@ -2,7 +2,7 @@ name: app
 
 services:
   app:
-    image: mamur1970/image-name
+    image: poltok/image-name
     build: ./app
     ports:
       - "5000:3000"
